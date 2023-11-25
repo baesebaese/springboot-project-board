@@ -21,9 +21,8 @@ import java.util.Objects;
         @Index(columnList = "createBy")
 
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment {
+public class ArticleComment extends AuditingFields{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
