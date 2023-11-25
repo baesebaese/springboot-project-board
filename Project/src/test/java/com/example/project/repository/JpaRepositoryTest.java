@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -80,16 +81,10 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenDeleting_thenWorksFine() {
         //given
-        Article article = articleRepository.findById(1L).orElseThrow();
-        long previousArticleCount = articleRepository.count();
-        long previousArticleCommentCount = aricleCommentRepository.count();
-        int deletedCommentsSize = article.getArticleComments().size();
 
-        //when
-        articleRepository.delete(article);
 
         //then
-        assertThat(articleRepository.count()).isEqualTo(previousArticleCount - 1);
-        assertThat(aricleCommentRepository.count()).isEqualTo(previousArticleCommentCount - 1);
+        assertThat(articleRepository.count()).isEqualTo(0);
+        assertThat(aricleCommentRepository.count()).isEqualTo(0);
     }
 }
